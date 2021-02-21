@@ -1,0 +1,7 @@
+# Orchestrator for server-deployment
+
+- hosts: local
+  connection: local
+  gather_facts: False
+  roles:
+          - serverdeploy

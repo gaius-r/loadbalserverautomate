@@ -1,12 +1,16 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+This role is to create and launch EC2 instances for our server-environment.
+It launches one master node and the specified number of worker nodes.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+This role uses the EC2 module, for which the boto package is required.
+Install boto on centos/rhel machines using pip.
+
+`pip3 install boto boto3`
 
 Role Variables
 --------------

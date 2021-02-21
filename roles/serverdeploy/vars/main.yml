@@ -1,2 +1,8 @@
----
-# vars file for serverdeploy
+aws_access_key: { enter access key }
+aws_secret_key: { enter secret key }
+image: ami-0a9d27a9f4f5c0efc
+instance_type: t2.micro
+count: 3
+region: ap-south-1
+security_group: servers_sg
+keypair: loadbal

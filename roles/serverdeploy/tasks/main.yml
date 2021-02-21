@@ -1,2 +1,46 @@
 ---
 # tasks file for serverdeploy
+
+- name: Creating the security group
+  ec2_group:
+      name: "{{ security_group }}"
+      description: "The security group for servers"
+      region: "{{ region }}"
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      rules:
+              - proto: tcp
+                from_port: 22
+                to_port: 22
+                cidr_ip: 0.0.0.0/0
+              - proto: tcp
+                from_port: 80
+                to_port: 80
+                cidr_ip: 0.0.0.0/0
+      rules_egress:
+              - proto: all
+                cidr_ip: 0.0.0.0/0
+
+- name: Launching EC2 Instances
+  ec2:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      group: "{{ security_group}}"
+      instance_type: "{{ instance_type }}"
+      image: "{{ image }}"
+      region: "{{ region }}"
+      keypair: "{{ keypair }}"
+      count: "{{ count }}"
+      instance_tags: {"Use":"TestServers"}
+      wait: yes
+  register: ec2launch
+
+- name: Adding instances as hosts
+  add_host:
+      name: "{{ item.public_ip}}"
+      groups: servers
+  with_items: "{{ ec2launch.instances }}"
+                      
+
+
+ 
