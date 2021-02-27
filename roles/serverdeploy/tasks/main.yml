@@ -21,7 +21,7 @@
               - proto: all
                 cidr_ip: 0.0.0.0/0
 
-- name: Launching EC2 Instances
+- name: Launching EC2 Instance for Load Balancer
   ec2:
       aws_access_key: "{{ aws_access_key }}"
       aws_secret_key: "{{ aws_secret_key }}"
@@ -30,10 +30,29 @@
       image: "{{ image }}"
       region: "{{ region }}"
       keypair: "{{ keypair }}"
-      count: "{{ count }}"
-      instance_tags: {"Use":"TestServers"}
+      count: "1"
+      instance_tags:
+              Name: loadbalancer
+      state: present
       wait: yes
   register: ec2launch
+
+- name: Launching EC2 Instances for Backend Servers
+  ec2:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      group: "{{ security_group}}"
+      instance_type: "{{ instance_type }}"
+      image: "{{ image }}"
+      region: "{{ region }}"
+      keypair: "{{ keypair }}"
+      count: "{{ server_count }}"
+      instance_tags:
+              Name: backend
+      state: present
+      wait: yes
+  register: ec2launch
+
 
 - name: Adding instances as hosts
   add_host:
