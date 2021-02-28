@@ -1,0 +1,19 @@
+---
+# tasks file for loadbalsetup
+
+- name: Installing HAProxy
+  package:
+          name: "haproxy"
+          state: present
+
+- name: Updating haproxy.cfg file
+  template:
+          dest: "/etc/haproxy/haproxy.cfg"
+          src: "haproxy.cfg"
+  notify: "service restart"
+
+- name: Starting HAProxy service
+  service:
+          name: "haproxy"
+          state: started
+          enabled: yes
