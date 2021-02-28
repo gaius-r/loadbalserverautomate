@@ -32,7 +32,7 @@
       keypair: "{{ keypair }}"
       count: "1"
       instance_tags:
-              Name: loadbalancer
+              Name: "{{ load_tag }}"
       state: present
       wait: yes
   register: ec2launch
@@ -48,7 +48,7 @@
       keypair: "{{ keypair }}"
       count: "{{ server_count }}"
       instance_tags:
-              Name: backend
+              Name: "{{ serve_tag }}"
       state: present
       wait: yes
   register: ec2launch

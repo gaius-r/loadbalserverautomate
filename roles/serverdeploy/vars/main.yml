@@ -6,3 +6,5 @@ server_count: 3
 region: ap-south-1
 security_group: servers_sg
 keypair: loadbal
+load_tag: mp_loadbal
+serve_tag: mp_backend
