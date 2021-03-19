@@ -8,9 +8,12 @@
             include_role:
                    name: serverdeploy
 
+          - name: Refreshing inventory
+            meta: refresh_inventory
+
           - name: Pausing execution for 1 minute to finish setting up Instances
             pause:
-                    minutes: 2
+                    minutes: 1
           
 - hosts: tag_Name_mp_loadbal 
   gather_facts: False
