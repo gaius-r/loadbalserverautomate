@@ -21,3 +21,12 @@
           - name: Setting up Load-Balancers
             include_role:
                     name: loadbalsetup
+
+
+- hosts: tag_Name_mp_backend 
+  gather_facts: False
+  tasks:
+          - name: Setting up backend servers
+            include_role:
+                    name: loadbalsetup
+                    tasks_from: webserver
