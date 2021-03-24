@@ -1,16 +1,21 @@
 ---
 # task to configure backend servers
-- name: Install httpd
+- name: Installing httpd and php
   package:
           name:
                - httpd
                - php
           state: present
 
-- name: Copy files to docroot
+- name: Copying php file to check IP
   copy:
           src:  "/var/www/html/ip.php"
-          dest: "/var/www/html/index.php"
+          dest: "/var/www/html/ipcheck.php"
+
+- name: Copying webpages
+  copy:
+          src:  "/var/www/html/"
+          dest: "/var/www/html/"
 
 - name: Starting the httpd service
   service:
