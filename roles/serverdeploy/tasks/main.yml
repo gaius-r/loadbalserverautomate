@@ -59,7 +59,4 @@
       name: "{{ item.public_ip}}"
       groups: servers
   with_items: "{{ ec2launch.instances }}"
-                      
-
-
  

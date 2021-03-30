@@ -1,6 +1,6 @@
 # Orchestrator for server-deployment
 
-- hosts: local
+- hosts: localhost
   connection: local
   gather_facts: False
   tasks:
