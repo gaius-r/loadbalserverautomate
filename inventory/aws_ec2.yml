@@ -1,7 +1,7 @@
 ---
 plugin: aws_ec2
-aws_access_key: AKIATAAZ2DVF52DZBIEE
-aws_secret_key: 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
+aws_access_key: <enter_access_key_here>
+aws_secret_key: <enter_secret_key_here>
 keyed_groups:
         - key : tags
           prefix : tag
