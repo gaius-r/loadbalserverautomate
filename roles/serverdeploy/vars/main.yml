@@ -1,5 +1,5 @@
-aws_access_key: AKIATAAZ2DVF52DZBIEE
-aws_secret_key: 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
+aws_access_key: <enter_access_key>
+aws_secret_key: <enter_secret_key>
 image: ami-0a9d27a9f4f5c0efc
 instance_type: t2.micro
 server_count: 3
